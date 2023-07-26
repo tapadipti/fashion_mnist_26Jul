@@ -1,0 +1,68 @@
+schema: '2.0'
+stages:
+  train:
+    cmd: python src/train.py
+    deps:
+    - path: data/fashion_mnist_data.pkl
+      hash: md5
+      md5: 35353c71da0985eed8bb507bbc53bd91
+      size: 54950285
+    - path: src/train.py
+      hash: md5
+      md5: 4a1cca466fd65e615f1481c8f15eb931
+      size: 3024
+    params:
+      params.yaml:
+        train.batch_size: 128
+        train.dropout: 0.4
+        train.hidden_units: 64
+        train.lr: 0.01
+        train.num_epochs: 3
+    outs:
+    - path: dvclive/metrics.json
+      hash: md5
+      md5: fa5268ac7285b188d2d04ed7135b4c06
+      size: 54
+    - path: dvclive/plots/metrics/accuracy.tsv
+      hash: md5
+      md5: 329c96c1bb4cf0c409de5f4325fe105f
+      size: 77
+    - path: output/fm_model
+      hash: md5
+      md5: ba846e23a93e989564bb7e957be6a466.dir
+      size: 705039
+      nfiles: 4
+    - path: output/train_logs.csv
+      hash: md5
+      md5: 92483c6a17338a90adb7fedcb59a1b47
+      size: 140
+  evaluate:
+    cmd: python src/evaluate.py
+    deps:
+    - path: data/fashion_mnist_data.pkl
+      hash: md5
+      md5: 35353c71da0985eed8bb507bbc53bd91
+      size: 54950285
+    - path: output/fm_model
+      hash: md5
+      md5: ba846e23a93e989564bb7e957be6a466.dir
+      size: 705039
+      nfiles: 4
+    - path: src/evaluate.py
+      hash: md5
+      md5: 77e30b4f39ba894d36591292a070a1a0
+      size: 3047
+    outs:
+    - path: output/metrics.json
+      hash: md5
+      md5: 2395553356edf8feef0dcc8515402fb2
+      size: 61
+    - path: output/predictions.json
+      hash: md5
+      md5: b751ac693599f1391ad48696b07642c2
+      size: 310000
+    - path: output/test/samples_of_mispredicted_images/
+      hash: md5
+      md5: affb07af924bd36c9429040326fd0b39.dir
+      size: 168787
+      nfiles: 10
