@@ -1,0 +1,5 @@
+outs:
+- md5: 35353c71da0985eed8bb507bbc53bd91
+  size: 54950285
+  hash: md5
+  path: fashion_mnist_data.pkl
