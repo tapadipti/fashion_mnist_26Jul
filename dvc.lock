@@ -9,8 +9,8 @@ stages:
       size: 54950285
     - path: src/train.py
       hash: md5
-      md5: 4a1cca466fd65e615f1481c8f15eb931
-      size: 3024
+      md5: 6de306d88a7ae9b7c44d7873c4dd5e97
+      size: 3167
     params:
       params.yaml:
         train.batch_size: 128
@@ -21,21 +21,21 @@ stages:
     outs:
     - path: dvclive/metrics.json
       hash: md5
-      md5: fa5268ac7285b188d2d04ed7135b4c06
+      md5: aa0f2d4cb87ee1b29e320df521d45168
       size: 54
     - path: dvclive/plots/metrics/accuracy.tsv
       hash: md5
-      md5: 329c96c1bb4cf0c409de5f4325fe105f
+      md5: 2b4c9f9202d94cbfd3adf1047bc58a7d
       size: 77
     - path: output/fm_model
       hash: md5
-      md5: ba846e23a93e989564bb7e957be6a466.dir
-      size: 705039
+      md5: da7dd4948fe782503be90d6894e83169.dir
+      size: 3782867
       nfiles: 4
     - path: output/train_logs.csv
       hash: md5
-      md5: 92483c6a17338a90adb7fedcb59a1b47
-      size: 140
+      md5: d3f8c4e31d85b043317c7e1caeb60e55
+      size: 141
   evaluate:
     cmd: python src/evaluate.py
     deps:
@@ -45,24 +45,24 @@ stages:
       size: 54950285
     - path: output/fm_model
       hash: md5
-      md5: ba846e23a93e989564bb7e957be6a466.dir
-      size: 705039
+      md5: da7dd4948fe782503be90d6894e83169.dir
+      size: 3782867
       nfiles: 4
     - path: src/evaluate.py
       hash: md5
-      md5: 77e30b4f39ba894d36591292a070a1a0
-      size: 3047
+      md5: cca081b957cf8396d8b1526d7734952c
+      size: 3040
     outs:
     - path: output/metrics.json
       hash: md5
-      md5: 2395553356edf8feef0dcc8515402fb2
-      size: 61
+      md5: 961a62b98e3abf71500288d8e1f5dfb9
+      size: 60
     - path: output/predictions.json
       hash: md5
-      md5: b751ac693599f1391ad48696b07642c2
+      md5: 08766c70203cbfef188a7ca30da27aab
       size: 310000
     - path: output/test/samples_of_mispredicted_images/
       hash: md5
-      md5: affb07af924bd36c9429040326fd0b39.dir
-      size: 168787
+      md5: 30d6dbf1b21d2d9654201d48a5c8bf5c.dir
+      size: 174824
       nfiles: 10

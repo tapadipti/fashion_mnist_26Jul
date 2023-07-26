@@ -6,8 +6,6 @@ from tensorflow.keras.utils import to_categorical
 
 from dvclive import Live
 
-# from mlem.api import save
-
 OUTPUT_DIR = "output"
 DATA_DIR = "data"
 fpath = os.path.join(DATA_DIR, "fashion_mnist_data.pkl")
@@ -32,11 +30,15 @@ hidden_units = params["hidden_units"]
 dropout = params["dropout"]
 num_epochs = params["num_epochs"]
 lr = params["lr"]
+conv_activation = params["conv_activation"]
 
 # Model specific code
-x_train = np.reshape(x_train, [-1, input_size])
+x_train = x_train.reshape(-1, 28, 28, 1)
 x_train = x_train.astype('float32') / 255
 model = Sequential()
+model.add(Conv2D(filters=28, kernel_size=(3,3), activation=conv_activation))
+model.add(MaxPooling2D(pool_size=(2,2)))
+model.add(Flatten())
 model.add(Dense(hidden_units, activation='relu'))
 model.add(Dropout(dropout))
 model.add(Dense(num_labels, activation='softmax'))
@@ -60,7 +62,7 @@ class AccuracyHistory(tensorflow.keras.callbacks.Callback):
 
 with Live() as live:
     history = model.fit(x_train, y_train, epochs=num_epochs, batch_size=batch_size, callbacks=[AccuracyHistory()], verbose=1)
-    
+
     model.summary()
 
     # save(model, "models/fashion_mnist_classifier")
